@@ -33,13 +33,25 @@ namespace FolderLounge
             var folderViewModel = new FolderViewModel();
             DataContext = folderViewModel;
 
+            // Setup sys tray icon
             System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();
-            notifyIcon.Icon = new System.Drawing.Icon(@"C:\code\FolderLounge\FolderLounge\propertysheets.ico");
+            ContextMenuStrip contextMenu = new ContextMenuStrip();
+            ToolStripItem item = new ToolStripMenuItem();
+            item.Text = "Quit";
+            item.Click += (s, e) =>
+                {
+                    System.Windows.Application.Current.Shutdown();
+                };
+            contextMenu.Items.Add(item);
+            notifyIcon.Icon = new System.Drawing.Icon(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("FolderLounge.propertysheets.ico"));
+            notifyIcon.ContextMenuStrip = contextMenu;
             notifyIcon.Visible = true;
             notifyIcon.DoubleClick += (s, e) => 
             {
                 ShowThisWindow();
             };
+
+            // Setup global hotkey for showing main Window
             Loaded += (s, e) =>
             {
                 _hotkey = new HotKey(ModifierKeys.Windows | ModifierKeys.Shift, Keys.E, this);
@@ -48,22 +60,10 @@ namespace FolderLounge
             };
         }
 
-
         private void ShowThisWindow()
         {
             this.Show();
             this.WindowState = WindowState.Normal;
-        }
-
-        private void globalHooks_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-        {
-            if ((e.Shift == true) && (e.Control == true) && 
-                //((e.KeyCode == Keys.LWin) || (e.KeyCode == Keys.RWin)) &&
-                (e.KeyCode == Keys.E))
-            {
-                ShowThisWindow();
-            }
-            Debug.WriteLine(e.KeyCode.ToString());
         }
 
         protected override void OnClosing(CancelEventArgs e)
@@ -76,7 +76,6 @@ namespace FolderLounge
         {
             if (WindowState == WindowState.Minimized)
                 this.Hide();
-
             base.OnStateChanged(e);
         }
 
