@@ -1,0 +1,68 @@
+﻿<Window x:Class="FolderLounge.SelectTaskWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:local="clr-namespace:FolderLounge"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Loaded="Window_Loaded" PreviewKeyDown="Window_KeyDown" >
+    <Window.Resources>
+
+        <DataTemplate x:Key="SubjectHeader">
+            <TextBlock Text="Subject" TextAlignment="Left" Width="400" />
+        </DataTemplate>
+        <!--<DataTemplate x:Key="DueDateHeader">
+            <TextBlock Text="Due date" TextAlignment="Left" Width="200" />
+        </DataTemplate>-->
+        <DataTemplate x:Key="SubjectCellTemplate">
+            <TextBlock Foreground="MediumBlue" 
+                       FontFamily="Calibri" 
+                       Text="{Binding Path=Folder}" /> 
+        </DataTemplate>
+        <!--<DataTemplate x:Key="DueDateCellTemplate">
+            <TextBlock Foreground="MediumBlue" 
+                       FontFamily="Calibri" 
+                       Text="{Binding Path=DateString}" />
+        </DataTemplate>-->
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Label Content="Filter: "/>
+            <TextBox Width="200" Height="25" Name="_textBox" TextChanged="_textBox_TextChanged" PreviewKeyDown="_textBox_PreviewKeyDown"/>
+            <Button Width="50" Height="25" Name="_clearButton" Content="Clear" Click="_clearButton_Click" />
+         </StackPanel>
+         <ListView 
+            IsSynchronizedWithCurrentItem="True" 
+            ItemsSource="{Binding Path=FolderDisplayItems}" 
+            Grid.Row="1" 
+            Name="_folderListView"
+            MouseDoubleClick="_folderListView_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                            HeaderTemplate="{StaticResource SubjectHeader}" 
+                            CellTemplate="{StaticResource SubjectCellTemplate}">
+                        <GridViewColumnHeader Click="_sortClicked" Tag="Subject"
+                                 Content="Subject" />
+                    </GridViewColumn>
+                    <!--<GridViewColumn 
+                            HeaderTemplate="{StaticResource DueDateHeader}" 
+                            CellTemplate="{StaticResource DueDateCellTemplate}">
+                        <GridViewColumnHeader Click="_sortClicked" Tag="DateString"
+                                 Content="DateString" />
+                    </GridViewColumn>-->
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right">
+            <Button Content="_Cancel" Width="100" Margin="5,2,5,2" Name="_cancelButton" Click="_cancelButton_Click" />
+            <Button Content="_Ok" Width="100" Margin="5,2,5,2" Name="_okButton" Click="_okButton_Click" />
+        </StackPanel>
+    </Grid>
+</Window>
