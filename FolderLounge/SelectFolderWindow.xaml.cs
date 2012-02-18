@@ -13,7 +13,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Globalization;
 using System.ComponentModel;
-using gma.System.Windows;
 using System.Windows.Forms;
 using System.Diagnostics;
 
@@ -24,8 +23,8 @@ namespace FolderLounge
     /// </summary>
     public partial class SelectTaskWindow : Window
     {
-        private UserActivityHook _globalHooks;
         private ListViewSorter _listViewSorter = new ListViewSorter();
+        private HotKey _hotkey;
 
         public SelectTaskWindow()
         {
@@ -34,20 +33,21 @@ namespace FolderLounge
             var folderViewModel = new FolderViewModel();
             DataContext = folderViewModel;
 
-            System.Windows.Forms.NotifyIcon ni = new System.Windows.Forms.NotifyIcon();
-            ni.Icon = new System.Drawing.Icon(@"C:\code\FolderLounge\FolderLounge\propertysheets.ico");
-            ni.Visible = true;
-            ni.DoubleClick +=
-                delegate(object sender, EventArgs args)
-                {
-                    ShowThisWindow();
-                };
-#if !DEBUG
-            Hide();
-            _globalHooks = new UserActivityHook();
-            _globalHooks.KeyDown += new System.Windows.Forms.KeyEventHandler(globalHooks_KeyDown);
-#endif
+            System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();
+            notifyIcon.Icon = new System.Drawing.Icon(@"C:\code\FolderLounge\FolderLounge\propertysheets.ico");
+            notifyIcon.Visible = true;
+            notifyIcon.DoubleClick += (s, e) => 
+            {
+                ShowThisWindow();
+            };
+            Loaded += (s, e) =>
+            {
+                _hotkey = new HotKey(ModifierKeys.Windows | ModifierKeys.Shift, Keys.E, this);
+                _hotkey.HotKeyPressed += (k) => ShowThisWindow();
+                Hide();
+            };
         }
+
 
         private void ShowThisWindow()
         {

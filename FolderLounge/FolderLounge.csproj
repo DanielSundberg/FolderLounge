@@ -59,6 +59,7 @@
     </ApplicationDefinition>
     <Compile Include="FolderReader.cs" />
     <Compile Include="FolderViewModel.cs" />
+    <Compile Include="HotKey.cs" />
     <Compile Include="ListViewSorter.cs" />
     <Compile Include="SelectFolderWindow.xaml.cs">
       <DependentUpon>SelectFolderWindow.xaml</DependentUpon>
@@ -68,7 +69,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="SortArdoner.cs" />
-    <Compile Include="UserActivityHook.cs" />
     <Page Include="SelectFolderWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

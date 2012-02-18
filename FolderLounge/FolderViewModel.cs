@@ -50,6 +50,11 @@ namespace FolderLounge
             _folderDisplayItems.Add(new FolderDisplayItem(@"c:\temp"));
             _folderDisplayItems.Add(new FolderDisplayItem(@"c:\temp2"));
             _folderDisplayItems.Add(new FolderDisplayItem(@"c:\temp3"));
+
+            // Read from text file
+
+            
+
             //_folderDisplayItems.Add(new FolderDisplayItem(@"c:\Windows"));
             //_folderDisplayItems.Add(new FolderDisplayItem(@"c:\Windows\System"));
             //_folderDisplayItems.Add(new FolderDisplayItem(@"c:\Documents"));
