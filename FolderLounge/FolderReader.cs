@@ -10,19 +10,28 @@ namespace FolderLounge
     {
         public List<string> GetFolders()
         {
-            DirectoryInfo d = new DirectoryInfo(System.Environment.GetFolderPath(Environment.SpecialFolder.Recent));
+            //DirectoryInfo d = new DirectoryInfo(System.Environment.GetFolderPath(Environment.SpecialFolder.Recent));
             List<string> folders = new List<string>();
-            foreach (var dir in d.GetFiles())
-            {
-                using (TextReader tr = File.OpenText(dir.FullName))
-                {
-                    string line;
-                    while ((line = tr.ReadLine()) != null)
-                    {
-                        Console.WriteLine(line);
+            //foreach (var dir in d.GetFiles())
+            //{
+            //    using (TextReader tr = File.OpenText(dir.FullName))
+            //    {
+            //        string line;
+            //        while ((line = tr.ReadLine()) != null)
+            //        {
+            //            Console.WriteLine(line);
                         
-                    }
+            //        }
 
+
+            //    }
+            //}
+            using (TextReader textReader = File.OpenText("folders.cfg"))
+            {
+                string line;
+                while ((line = textReader.ReadLine()) != null)
+                {
+                    folders.Add(line);
 
                 }
             }

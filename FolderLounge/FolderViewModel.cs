@@ -13,7 +13,6 @@ namespace FolderLounge
     public class FolderDisplayItem : INotifyPropertyChanged
     {
         private string _folder;
-
         private bool _visible = true;
 
         public bool Visible
@@ -47,9 +46,8 @@ namespace FolderLounge
         
         public FolderViewModel()
         {
-            _folderDisplayItems.Add(new FolderDisplayItem(@"c:\temp"));
-            _folderDisplayItems.Add(new FolderDisplayItem(@"c:\temp2"));
-            _folderDisplayItems.Add(new FolderDisplayItem(@"c:\temp3"));
+            var folders = (new FolderReader()).GetFolders(); 
+            folders.ForEach(f => _folderDisplayItems.Add(new FolderDisplayItem(f)));
 
             // Read from text file
 
