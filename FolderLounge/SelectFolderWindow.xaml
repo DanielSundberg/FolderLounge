@@ -17,6 +17,7 @@
         <DataTemplate x:Key="SubjectCellTemplate">
             <TextBlock Foreground="MediumBlue" 
                        FontFamily="Calibri" 
+                       FontSize="14"
                        Text="{Binding Path=Folder}" /> 
         </DataTemplate>
         <!--<DataTemplate x:Key="DueDateCellTemplate">
