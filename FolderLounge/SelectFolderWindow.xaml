@@ -16,7 +16,7 @@
             <TextBlock Text="Due date" TextAlignment="Left" Width="200" />
         </DataTemplate>-->
         <DataTemplate x:Key="SubjectCellTemplate">
-            <TextBlock Foreground="MediumBlue" 
+            <TextBlock Foreground="Black" 
                        FontFamily="Calibri" 
                        FontSize="14"
                        Text="{Binding Path=Folder}" /> 
@@ -29,6 +29,12 @@
     </Window.Resources>
     
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                <GradientStop Color="#FFFFFF" Offset="0.021" />
+                <GradientStop Color="#FFEEFF" Offset="1" />
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
@@ -45,6 +51,13 @@
             Grid.Row="1" 
             Name="_folderListView"
             MouseDoubleClick="_folderListView_MouseDoubleClick">
+            <ListView.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFFFFF" Offset="0.021" />
+                    <GradientStop Color="#FFEEFF" Offset="1" />
+                </LinearGradientBrush>
+            </ListView.Background>
+
             <ListView.View>
                 <GridView>
                     <GridViewColumn
