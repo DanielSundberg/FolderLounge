@@ -114,11 +114,23 @@ namespace FolderLounge
             }
             else if (e.Key == Key.Escape)
             {
-                Hide();
+                HandleEscKeyDown();
             }
             else if (e.Key == Key.Enter)
             {
                 Submit();
+            }
+        }
+
+        private void HandleEscKeyDown()
+        {
+            if (_textBox.Text.Length > 0)
+            {
+                _textBox.Clear();
+            }
+            else
+            {
+                Hide();    
             }
         }
 
