@@ -63,7 +63,17 @@ namespace FolderLounge
         private void ShowThisWindow()
         {
             this.Show();
+            _textBox.Clear();
+            
+            SelectFirstListViewItem();
+
             this.WindowState = WindowState.Normal;
+        }
+
+        private void SelectFirstListViewItem()
+        {
+            var dv = CollectionViewSource.GetDefaultView((DataContext as FolderViewModel).FolderDisplayItems);
+            dv.MoveCurrentTo((DataContext as FolderViewModel).FirstVisible());
         }
 
         protected override void OnClosing(CancelEventArgs e)
@@ -82,8 +92,7 @@ namespace FolderLounge
         private void _textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             (DataContext as FolderViewModel).SearchFilter = _textBox.Text;
-            var dv = CollectionViewSource.GetDefaultView((DataContext as FolderViewModel).FolderDisplayItems);
-            dv.MoveCurrentTo((DataContext as FolderViewModel).FirstVisible());
+            SelectFirstListViewItem();
         }
 
         private void _clearButton_Click(object sender, RoutedEventArgs e)
