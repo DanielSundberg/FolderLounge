@@ -5,11 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
             xmlns:local="clr-namespace:FolderLounge"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" Loaded="Window_Loaded" PreviewKeyDown="Window_KeyDown" >
+             d:DesignHeight="300" d:DesignWidth="300" Loaded="Window_Loaded" PreviewKeyDown="Window_KeyDown" 
+            Width="800" Height="600" WindowStartupLocation="CenterScreen" Title="FolderLounge">
     <Window.Resources>
 
         <DataTemplate x:Key="SubjectHeader">
-            <TextBlock Text="Subject" TextAlignment="Left" Width="400" />
+            <TextBlock Text="Folder" TextAlignment="Left" Width="400" />
         </DataTemplate>
         <!--<DataTemplate x:Key="DueDateHeader">
             <TextBlock Text="Due date" TextAlignment="Left" Width="200" />
@@ -29,13 +30,13 @@
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Grid.Row="0">
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="5">
             <Label Content="Filter: "/>
-            <TextBox Width="200" Height="25" Name="_textBox" TextChanged="_textBox_TextChanged" PreviewKeyDown="_textBox_PreviewKeyDown"/>
+            <TextBox Width="200" Height="25" Margin="10, 0, 10, 0" Name="_textBox" TextChanged="_textBox_TextChanged" PreviewKeyDown="_textBox_PreviewKeyDown"/>
             <Button Width="50" Height="25" Name="_clearButton" Content="Clear" Click="_clearButton_Click" />
          </StackPanel>
          <ListView 
@@ -61,7 +62,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right">
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="5, 5, 5, 5" HorizontalAlignment="Right">
             <Button Content="_Cancel" Width="100" Margin="5,2,5,2" Name="_cancelButton" Click="_cancelButton_Click" />
             <Button Content="_Ok" Width="100" Margin="5,2,5,2" Name="_okButton" Click="_okButton_Click" />
         </StackPanel>
