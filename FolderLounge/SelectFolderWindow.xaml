@@ -28,24 +28,26 @@
         </DataTemplate>-->
     </Window.Resources>
     
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                <GradientStop Color="#FFFFFF" Offset="0.021" />
-                <GradientStop Color="#FFEEFF" Offset="1" />
-            </LinearGradientBrush>
-        </Grid.Background>
+    <Grid>        
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="5">
-            <Label Content="Filter: "/>
-            <TextBox Width="200" Height="25" Margin="10, 0, 10, 0" Name="_textBox" TextChanged="_textBox_TextChanged" PreviewKeyDown="_textBox_PreviewKeyDown"/>
-            <Button Width="50" Height="25" Name="_clearButton" Content="Clear" Click="_clearButton_Click" />
-         </StackPanel>
-         <ListView 
+        <StackPanel Grid.Row="0">
+            <StackPanel.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFFFFF" Offset="0" />
+                    <GradientStop Color="#EEEEEE" Offset="1" />
+                </LinearGradientBrush>
+            </StackPanel.Background>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="Filter: "/>
+                <TextBox Width="200" Height="25" Margin="10, 0, 10, 0" Name="_textBox" TextChanged="_textBox_TextChanged" PreviewKeyDown="_textBox_PreviewKeyDown"/>
+                <Button Width="50" Height="25" Name="_clearButton" Content="Clear" Click="_clearButton_Click" />
+             </StackPanel>
+        </StackPanel>
+        <ListView 
             IsSynchronizedWithCurrentItem="True" 
             ItemsSource="{Binding Path=FolderDisplayItems}" 
             Grid.Row="1" 
@@ -54,7 +56,7 @@
             <ListView.Background>
                 <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                     <GradientStop Color="#FFFFFF" Offset="0.021" />
-                    <GradientStop Color="#FFEEFF" Offset="1" />
+                    <GradientStop Color="#EEEEEE" Offset="1" />
                 </LinearGradientBrush>
             </ListView.Background>
 
@@ -75,9 +77,17 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="5, 5, 5, 5" HorizontalAlignment="Right">
-            <Button Content="_Cancel" Width="100" Margin="5,2,5,2" Name="_cancelButton" Click="_cancelButton_Click" />
-            <Button Content="_Ok" Width="100" Margin="5,2,5,2" Name="_okButton" Click="_okButton_Click" />
+        <StackPanel Grid.Row="2">
+            <StackPanel.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFFFFF" Offset="0" />
+                    <GradientStop Color="#CCCCCC" Offset="1" />
+                </LinearGradientBrush>
+            </StackPanel.Background>
+            <StackPanel Orientation="Horizontal" Margin="5, 5, 5, 5" HorizontalAlignment="Right">
+                <Button Content="_Cancel" Width="100" Margin="5,2,5,2" Name="_cancelButton" Click="_cancelButton_Click" />
+                <Button Content="_Ok" Width="100" Margin="5,2,5,2" Name="_okButton" Click="_okButton_Click" />
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>
