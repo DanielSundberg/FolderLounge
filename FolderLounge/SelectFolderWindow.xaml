@@ -17,7 +17,7 @@
         </DataTemplate>-->
         <DataTemplate x:Key="SubjectCellTemplate">
             <TextBlock Foreground="Black" 
-                       FontFamily="Calibri" 
+                       FontFamily="Segoe UI" 
                        FontSize="14"
                        Text="{Binding Path=Folder}" /> 
         </DataTemplate>
@@ -36,12 +36,13 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
             <StackPanel.Background>
-                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                    <GradientStop Color="#FFFFFF" Offset="0" />
-                    <GradientStop Color="#EEEEEE" Offset="1" />
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#FFFFFF" Offset=".1" />
+                    <GradientStop Color="#DDDDDD" Offset=".2" />
+                    <GradientStop Color="#EEEEEE" Offset=".8" />
                 </LinearGradientBrush>
             </StackPanel.Background>
-            <StackPanel Orientation="Horizontal" Margin="5">
+            <StackPanel Orientation="Horizontal" Margin="5, 10, 5, 2">
                 <Label Content="Filter: "/>
                 <TextBox Width="200" Height="25" Margin="10, 0, 10, 0" Name="_textBox" TextChanged="_textBox_TextChanged" PreviewKeyDown="_textBox_PreviewKeyDown"/>
                 <Button Width="50" Height="25" Name="_clearButton" Content="Clear" Click="_clearButton_Click" />
@@ -53,12 +54,12 @@
             Grid.Row="1" 
             Name="_folderListView"
             MouseDoubleClick="_folderListView_MouseDoubleClick">
-            <ListView.Background>
+            <!--<ListView.Background>
                 <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                     <GradientStop Color="#FFFFFF" Offset="0.021" />
                     <GradientStop Color="#EEEEEE" Offset="1" />
                 </LinearGradientBrush>
-            </ListView.Background>
+            </ListView.Background>-->
 
             <ListView.View>
                 <GridView>
@@ -79,12 +80,20 @@
         </ListView>
         <StackPanel Grid.Row="2">
             <StackPanel.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#FFFFFF" Offset=".1" />
+                    <GradientStop Color="#DDDDDD" Offset=".2" />
+                    <GradientStop Color="#EEEEEE" Offset=".8" />
+                </LinearGradientBrush>
+            </StackPanel.Background>
+
+            <!--<StackPanel.Background>
                 <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                     <GradientStop Color="#FFFFFF" Offset="0" />
                     <GradientStop Color="#CCCCCC" Offset="1" />
                 </LinearGradientBrush>
-            </StackPanel.Background>
-            <StackPanel Orientation="Horizontal" Margin="5, 5, 5, 5" HorizontalAlignment="Right">
+            </StackPanel.Background>-->
+            <StackPanel Orientation="Horizontal" Margin="5, 7, 5, 5" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <Button Content="_Cancel" Width="100" Margin="5,2,5,2" Name="_cancelButton" Click="_cancelButton_Click" />
                 <Button Content="_Ok" Width="100" Margin="5,2,5,2" Name="_okButton" Click="_okButton_Click" />
             </StackPanel>
