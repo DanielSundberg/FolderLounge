@@ -8,19 +8,39 @@
              d:DesignHeight="300" d:DesignWidth="300" Loaded="Window_Loaded" PreviewKeyDown="Window_KeyDown" 
             Width="800" Height="600" WindowStartupLocation="CenterScreen" Title="FolderLounge">
     <Window.Resources>
-
+        <LinearGradientBrush x:Key="HeaderBrush">
+            <GradientStop Color="#A6A6A6" Offset="0"/>
+            <GradientStop Color="#868686" Offset="1"/>
+        </LinearGradientBrush>
+        <Style x:Key="ColHeaderText" TargetType="TextBlock">
+            <Setter Property="Background" Value="{StaticResource HeaderBrush}" />
+        </Style>
         <DataTemplate x:Key="SubjectHeader">
-            <TextBlock Text="Folder" TextAlignment="Left" Width="400" />
+            <!--<TextBlock Text="Folder" Style="{StaticResource ColHeaderText}" />-->
+            <TextBlock Text="Folder" />
         </DataTemplate>
         <!--<DataTemplate x:Key="DueDateHeader">
             <TextBlock Text="Due date" TextAlignment="Left" Width="200" />
         </DataTemplate>-->
         <DataTemplate x:Key="SubjectCellTemplate">
-            <TextBlock Foreground="Black" 
+            <TextBlock Foreground="#DDDDDD" 
                        FontFamily="Segoe UI" 
                        FontSize="14"
                        Text="{Binding Path=Folder}" /> 
         </DataTemplate>
+        <Style x:Key="CustomListViewItemStyle" TargetType="{x:Type ListViewItem}">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Style.Triggers>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                    <Setter Property="Background" Value="#313131"></Setter>
+                </Trigger>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="#373737"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        
         <!--<DataTemplate x:Key="DueDateCellTemplate">
             <TextBlock Foreground="MediumBlue" 
                        FontFamily="Calibri" 
@@ -37,9 +57,13 @@
         <StackPanel Grid.Row="0">
             <StackPanel.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Color="#FFFFFF" Offset=".1" />
+                    <!--<GradientStop Color="#FFFFFF" Offset=".1" />
                     <GradientStop Color="#DDDDDD" Offset=".2" />
-                    <GradientStop Color="#EEEEEE" Offset=".8" />
+                    <GradientStop Color="#EEEEEE" Offset=".8" />-->
+                    <!--<GradientStop Color="#FFFFFF" Offset=".01" />-->
+                    <GradientStop Color="#D0D0D0" Offset="0" />
+                    <GradientStop Color="#959595" Offset=".8" />
+
                 </LinearGradientBrush>
             </StackPanel.Background>
             <StackPanel Orientation="Horizontal" Margin="5, 10, 5, 2">
@@ -53,13 +77,13 @@
             ItemsSource="{Binding Path=FolderDisplayItems}" 
             Grid.Row="1" 
             Name="_folderListView"
-            MouseDoubleClick="_folderListView_MouseDoubleClick">
-            <!--<ListView.Background>
-                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                    <GradientStop Color="#FFFFFF" Offset="0.021" />
-                    <GradientStop Color="#EEEEEE" Offset="1" />
-                </LinearGradientBrush>
-            </ListView.Background>-->
+            MouseDoubleClick="_folderListView_MouseDoubleClick"
+            ItemContainerStyle="{DynamicResource CustomListViewItemStyle}"
+            AlternationCount="2"
+            >
+            <ListView.Background>
+                <SolidColorBrush Color="#454545" />
+            </ListView.Background>
 
             <ListView.View>
                 <GridView>
@@ -81,9 +105,12 @@
         <StackPanel Grid.Row="2">
             <StackPanel.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Color="#FFFFFF" Offset=".1" />
+                    <!--<GradientStop Color="#FFFFFF" Offset=".1" />
                     <GradientStop Color="#DDDDDD" Offset=".2" />
-                    <GradientStop Color="#EEEEEE" Offset=".8" />
+                    <GradientStop Color="#EEEEEE" Offset=".8" />-->
+                    <!--<GradientStop Color="#FFFFFF" Offset=".01" />-->
+                    <GradientStop Color="#5F5F5F" Offset="0" />
+                    <GradientStop Color="#4E4E4E" Offset=".8" />
                 </LinearGradientBrush>
             </StackPanel.Background>
 
