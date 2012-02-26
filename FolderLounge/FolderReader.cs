@@ -30,20 +30,11 @@ namespace FolderLounge
         public List<string> GetFolders()
         {
             List<string> folders = new List<string>();
-            //foreach (var dir in d.GetFiles())
-            //{
-            //    using (TextReader tr = File.OpenText(dir.FullName))
-            //    {
-            //        string line;
-            //        while ((line = tr.ReadLine()) != null)
-            //        {
-            //            Console.WriteLine(line);
-                        
-            //        }
 
+            // First get config file from local app data folder
+            //string homePath = Path.Combine(Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData), 
 
-            //    }
-            //}
+            // Then read default folders.cfg
             using (TextReader textReader = File.OpenText("folders.cfg"))
             {
                 string line;
@@ -54,7 +45,7 @@ namespace FolderLounge
                 }
             }
 
-            //var links = new List<string>();
+            // Last read recent folders;
             DirectoryInfo d = new DirectoryInfo(System.Environment.GetFolderPath(Environment.SpecialFolder.Recent));
             foreach (FileInfo lnk in d.GetFiles())
             {
