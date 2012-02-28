@@ -8,6 +8,9 @@ namespace FolderLounge
 {
     class FolderReader
     {
+        private const string CONFIG_FILE = "folders.cfg";
+        private const string CONFIG_FILE_BACKUP = "folders.cfg.bak";
+
         public static string GetLnkTarget(string lnkPath)
         {
             FileInfo fileInfo = new FileInfo(lnkPath);
@@ -35,7 +38,7 @@ namespace FolderLounge
             //string homePath = Path.Combine(Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData), 
 
             // Then read default folders.cfg
-            using (TextReader textReader = File.OpenText("folders.cfg"))
+            using (TextReader textReader = File.OpenText(CONFIG_FILE))
             {
                 string line;
                 while ((line = textReader.ReadLine()) != null)
@@ -59,6 +62,22 @@ namespace FolderLounge
             // Setup file monitor for recent folders
 
             return folders;
+        }
+
+        internal void Save(System.Collections.ObjectModel.ObservableCollection<FolderDisplayItem> folderDisplayItems)
+        {
+            File.Copy(CONFIG_FILE, CONFIG_FILE_BACKUP, true);
+            File.Delete(CONFIG_FILE);
+            using (StreamWriter fileWriter = new StreamWriter(CONFIG_FILE))
+            {
+                foreach (var f in folderDisplayItems) 
+                {
+                    if (f.Pinned)
+                    {
+                        fileWriter.WriteLine(f.Folder);
+                    }
+                }
+            }
         }
     }
 }

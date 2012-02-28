@@ -17,10 +17,12 @@ namespace FolderLounge
         
         public FolderViewModel()
         {
-            var folders = (new FolderReader()).GetFolders(); 
+            _folderDisplayItems.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(_folderDisplayItems_CollectionChanged);
+
+            _folderReader = new FolderReader();
+            var folders = _folderReader.GetFolders(); 
             folders.ForEach(f => _folderDisplayItems.Add(f));
 
-            _folderDisplayItems.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(_folderDisplayItems_CollectionChanged);
         }
 
         private void _folderDisplayItems_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -47,6 +49,7 @@ namespace FolderLounge
         {
             // This will get called when the property of an object inside the collection changes
             // Persist items
+            _folderReader.Save(_folderDisplayItems);
         }
 
         public ObservableCollection<FolderDisplayItem> FolderDisplayItems
@@ -79,6 +82,7 @@ namespace FolderLounge
         }
 
         private string _searchFilter;
+        private FolderReader _folderReader;
 
         internal void SelectPrev()
         {
