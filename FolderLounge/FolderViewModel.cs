@@ -10,36 +10,7 @@ using System.Windows.Forms;
 
 namespace FolderLounge
 {
-    public class FolderDisplayItem : INotifyPropertyChanged
-    {
-        private string _folder;
-        private bool _visible = true;
-
-        public bool Visible
-        {
-            get { return _visible; }
-            set 
-            { 
-                _visible = value;
-                if (PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs("Visible"));
-                }
-            }
-        }
-        public string Folder
-        {
-            get { return _folder; }
-            set { _folder = value; }
-        }
-        public FolderDisplayItem(string folder)
-        {
-            _folder = folder;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-   }
-
+    
     public class FolderViewModel : INotifyPropertyChanged
     {
         ObservableCollection<FolderDisplayItem> _folderDisplayItems = new ObservableCollection<FolderDisplayItem>();
@@ -47,7 +18,7 @@ namespace FolderLounge
         public FolderViewModel()
         {
             var folders = (new FolderReader()).GetFolders(); 
-            folders.ForEach(f => _folderDisplayItems.Add(new FolderDisplayItem(f)));
+            folders.ForEach(f => _folderDisplayItems.Add(f));
 
             // Read from text file
 

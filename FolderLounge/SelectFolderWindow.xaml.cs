@@ -171,6 +171,11 @@ namespace FolderLounge
         {
             Submit();
         }
+
+        private void _pinButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
     public class BoolToVisibilityConverter : IValueConverter
     {

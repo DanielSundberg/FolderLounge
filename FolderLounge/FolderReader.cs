@@ -27,9 +27,9 @@ namespace FolderLounge
             }
         }
 
-        public List<string> GetFolders()
+        public List<FolderDisplayItem> GetFolders()
         {
-            List<string> folders = new List<string>();
+            List<FolderDisplayItem> folders = new List<FolderDisplayItem>();
 
             // First get config file from local app data folder
             //string homePath = Path.Combine(Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData), 
@@ -40,7 +40,7 @@ namespace FolderLounge
                 string line;
                 while ((line = textReader.ReadLine()) != null)
                 {
-                    folders.Add(line);
+                    folders.Add(new FolderDisplayItem(line, true));
 
                 }
             }
@@ -52,7 +52,7 @@ namespace FolderLounge
                 string path = GetLnkTarget(lnk.FullName);
                 if (Directory.Exists(path))
                 {
-                    folders.Add(path);
+                    folders.Add(new FolderDisplayItem(path, false));
                 }
             }
 
