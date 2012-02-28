@@ -7,29 +7,46 @@ using System.Diagnostics;
 using System.ComponentModel;
 using System.Windows.Data;
 using System.Windows.Forms;
+using System.Collections.Specialized;
 
 namespace FolderLounge
 {
-    
-    public class FolderViewModel : INotifyPropertyChanged
+    public class FolderViewModel
     {
-        ObservableCollection<FolderDisplayItem> _folderDisplayItems = new ObservableCollection<FolderDisplayItem>();
+        private ObservableCollection<FolderDisplayItem> _folderDisplayItems = new ObservableCollection<FolderDisplayItem>();
         
         public FolderViewModel()
         {
             var folders = (new FolderReader()).GetFolders(); 
             folders.ForEach(f => _folderDisplayItems.Add(f));
 
-            // Read from text file
+            _folderDisplayItems.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(_folderDisplayItems_CollectionChanged);
+        }
 
-            
+        private void _folderDisplayItems_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Remove)
+            {
+                foreach (FolderDisplayItem item in e.OldItems)
+                {
+                    //Removed items
+                    item.PropertyChanged -= EntityViewModelPropertyChanged;
+                }
+            }
+            else if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                foreach (FolderDisplayItem item in e.NewItems)
+                {
+                    //Added items
+                    item.PropertyChanged += EntityViewModelPropertyChanged;
+                }
+            }    
+        }
 
-            //_folderDisplayItems.Add(new FolderDisplayItem(@"c:\Windows"));
-            //_folderDisplayItems.Add(new FolderDisplayItem(@"c:\Windows\System"));
-            //_folderDisplayItems.Add(new FolderDisplayItem(@"c:\Documents"));
-            //_folderDisplayItems.Add(new FolderDisplayItem(@"c:\Users\dasun"));
-            //var folders = (new FolderReader()).GetFolders();
-            //folders.ForEach(f => _folderDisplayItems.Add(new FolderDisplayItem(f)));
+        private void EntityViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            // This will get called when the property of an object inside the collection changes
+            // Persist items
         }
 
         public ObservableCollection<FolderDisplayItem> FolderDisplayItems
@@ -61,7 +78,6 @@ namespace FolderLounge
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
         private string _searchFilter;
 
         internal void SelectPrev()

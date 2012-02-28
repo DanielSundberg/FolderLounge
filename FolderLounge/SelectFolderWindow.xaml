@@ -26,10 +26,7 @@
                        Text="{Binding Path=Folder}" /> 
         </DataTemplate>
         <DataTemplate x:Key="PinnedCellTemplate">
-            <Button 
-                Width="45" 
-                Content="{Binding Path=Pinned, Converter={StaticResource pinnedConverter}}" 
-                Click="_pinButton_Click" />
+            <CheckBox IsChecked="{Binding Path=Pinned}" />
         </DataTemplate>
     </Window.Resources>
     
