@@ -20,13 +20,20 @@
                 </Info>
             </x:XData>
         </XmlDataProvider>
-        <CollectionViewSource x:Key='src' 
+        <!--<CollectionViewSource x:Key='src' 
                           Source="{Binding Source={StaticResource MyData}, 
                                    XPath=Item}">
             <CollectionViewSource.GroupDescriptions>
                 <PropertyGroupDescription PropertyName="@Catalog" />
             </CollectionViewSource.GroupDescriptions>
+        </CollectionViewSource>-->
+        <CollectionViewSource x:Key='src' 
+                          Source="{Binding Path=FolderDisplayItems}">
+            <CollectionViewSource.GroupDescriptions>
+                <PropertyGroupDescription PropertyName="Pinned" />
+            </CollectionViewSource.GroupDescriptions>
         </CollectionViewSource>
+
     </Window.Resources>
 
     <ListView ItemsSource='{Binding Source={StaticResource src}}' 
