@@ -17,7 +17,7 @@
             <TextBlock Text="Folder" TextAlignment="Left"  Width="680"/>
         </DataTemplate>
         <DataTemplate x:Key="PinnedHeader">
-            <TextBlock Text="" TextAlignment="Left" Width="50" />
+            <TextBlock Text="Pinned" TextAlignment="Left" Width="50" />
         </DataTemplate>
         <DataTemplate x:Key="SubjectCellTemplate">
             <TextBlock Foreground="#111111" 
