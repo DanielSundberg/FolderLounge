@@ -45,7 +45,7 @@ namespace FolderLounge
                 {
                     if (!folders.ContainsKey(line))
                     {
-                        folders.Add(line, new FolderDisplayItem(line, true));
+                        folders.Add(line, new FolderDisplayItem(line, true, "Pinned"));
                     }
                 }
             }
@@ -59,7 +59,7 @@ namespace FolderLounge
                 {
                     if (!folders.ContainsKey(path))
                     {
-                        folders.Add(path, new FolderDisplayItem(path, false));
+                        folders.Add(path, new FolderDisplayItem(path, false, "Not pinned"));
                     }
                 }
             }

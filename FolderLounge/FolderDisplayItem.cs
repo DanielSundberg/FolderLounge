@@ -11,6 +11,13 @@ namespace FolderLounge
         private string _folder;
         private bool _visible = true;
         private bool _pinned;
+        private string _state;
+
+        public string State
+        {
+            get { return _state; }
+            set { _state = value; }
+        }
 
         public bool Pinned
         {
@@ -42,10 +49,11 @@ namespace FolderLounge
             get { return _folder; }
             set { _folder = value; }
         }
-        public FolderDisplayItem(string folder, bool pinned)
+        public FolderDisplayItem(string folder, bool pinned, string state)
         {
             _folder = folder;
             _pinned = pinned;
+            _state = state;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
