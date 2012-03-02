@@ -70,14 +70,13 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="{x:Type GroupItem}">
-                                        <Expander IsExpanded="True" BorderBrush="#FFA4B97F" 
-                        BorderThickness="0,0,0,1">
+                                        <Expander IsExpanded="True" BorderBrush="#FFFFFFFF" BorderThickness="0,0,0,1">
                                             <Expander.Header>
                                                 <DockPanel>
-                                                    <TextBlock FontWeight="Bold" Text="{Binding Path=Name}" 
-                                Margin="5,0,0,0" Width="100"/>
-                                                    <TextBlock FontWeight="Bold" 
-                                Text="{Binding Path=ItemCount}"/>
+                                                    <TextBlock FontWeight="Bold" Text="{Binding Path=Name}" Margin="5,0,0,0" />
+                                                    <TextBlock FontWeight="Bold" Text=" ("/>
+                                                    <TextBlock FontWeight="Bold" Text="{Binding Path=ItemCount}"/>
+                                                    <TextBlock FontWeight="Bold" Text=" folders)"/>
                                                 </DockPanel>
                                             </Expander.Header>
                                             <Expander.Content>

@@ -1,20 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Globalization;
 using System.ComponentModel;
 using System.Windows.Forms;
-using System.Diagnostics;
 
 namespace FolderLounge
 {
@@ -58,8 +49,9 @@ namespace FolderLounge
                 _hotkey.HotKeyPressed += (k) => ShowThisWindow();
                 Hide();
 
+                // Setup grouping in list view
                 var dv = CollectionViewSource.GetDefaultView((DataContext as FolderViewModel).FolderDisplayItems);
-                dv.GroupDescriptions.Add(new PropertyGroupDescription("State"));
+                dv.GroupDescriptions.Add(new PropertyGroupDescription("Pinned", new BooleanToPinnedTextConverter()));
             };
         }
 
@@ -79,6 +71,9 @@ namespace FolderLounge
         {
             var dv = CollectionViewSource.GetDefaultView((DataContext as FolderViewModel).FolderDisplayItems);
             dv.MoveCurrentTo((DataContext as FolderViewModel).FirstVisible());
+            
+            // Refresh view to update categories
+            dv.Refresh();
         }
 
         protected override void OnClosing(CancelEventArgs e)
@@ -177,10 +172,6 @@ namespace FolderLounge
             Submit();
         }
 
-        private void _pinButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
     public class BoolToVisibilityConverter : IValueConverter
     {

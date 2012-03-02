@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace FolderLounge
 {
@@ -11,12 +7,12 @@ namespace FolderLounge
         private string _folder;
         private bool _visible = true;
         private bool _pinned;
-        private string _state;
+        private string _category;
 
-        public string State
+        public string Category
         {
-            get { return _state; }
-            set { _state = value; }
+            get { return _category; }
+            set { _category = value; }
         }
 
         public bool Pinned
@@ -49,11 +45,11 @@ namespace FolderLounge
             get { return _folder; }
             set { _folder = value; }
         }
-        public FolderDisplayItem(string folder, bool pinned, string state)
+        public FolderDisplayItem(string folder, bool pinned, string category)
         {
             _folder = folder;
             _pinned = pinned;
-            _state = state;
+            _category = category;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

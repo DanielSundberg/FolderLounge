@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Data;
 using System.Globalization;
 
@@ -14,9 +11,9 @@ namespace FolderLounge
             object parameter, CultureInfo culture)
         {
             if ((bool)value)
-                return "Unpin";
+                return "Bookmarks";
             else
-                return "Pin";
+                return "Recent";
         }
 
         public object ConvertBack(object value, Type targetType,
