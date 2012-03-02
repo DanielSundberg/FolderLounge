@@ -57,8 +57,13 @@ namespace FolderLounge
                 _hotkey = new HotKey(ModifierKeys.Windows | ModifierKeys.Shift, Keys.E, this);
                 _hotkey.HotKeyPressed += (k) => ShowThisWindow();
                 Hide();
+
+                var dv = CollectionViewSource.GetDefaultView((DataContext as FolderViewModel).FolderDisplayItems);
+                dv.GroupDescriptions.Add(new PropertyGroupDescription("State"));
             };
         }
+
+
 
         private void ShowThisWindow()
         {

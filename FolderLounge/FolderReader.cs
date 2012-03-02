@@ -32,7 +32,7 @@ namespace FolderLounge
 
         public List<FolderDisplayItem> GetFolders()
         {
-            List<FolderDisplayItem> folders = new List<FolderDisplayItem>();
+            Dictionary<string, FolderDisplayItem> folders = new Dictionary<string, FolderDisplayItem>();
 
             // First get config file from local app data folder
             //string homePath = Path.Combine(Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData), 
@@ -43,8 +43,10 @@ namespace FolderLounge
                 string line;
                 while ((line = textReader.ReadLine()) != null)
                 {
-                    folders.Add(new FolderDisplayItem(line, true));
-
+                    if (!folders.ContainsKey(line))
+                    {
+                        folders.Add(line, new FolderDisplayItem(line, true, "Pinned"));
+                    }
                 }
             }
 
@@ -55,13 +57,16 @@ namespace FolderLounge
                 string path = GetLnkTarget(lnk.FullName);
                 if (Directory.Exists(path))
                 {
-                    folders.Add(new FolderDisplayItem(path, false));
+                    if (!folders.ContainsKey(path))
+                    {
+                        folders.Add(path, new FolderDisplayItem(path, false, "Not pinned"));
+                    }
                 }
             }
 
             // Setup file monitor for recent folders
 
-            return folders;
+            return folders.Values.ToList();
         }
 
         internal void Save(System.Collections.ObjectModel.ObservableCollection<FolderDisplayItem> folderDisplayItems)
