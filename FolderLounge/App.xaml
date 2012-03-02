@@ -3,6 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="SelectFolderWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary Source="Styles/ListViewExpanderStyle.xaml" />
     </Application.Resources>
 </Application>
