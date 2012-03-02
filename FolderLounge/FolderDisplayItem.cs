@@ -7,13 +7,6 @@ namespace FolderLounge
         private string _folder;
         private bool _visible = true;
         private bool _pinned;
-        private string _category;
-
-        public string Category
-        {
-            get { return _category; }
-            set { _category = value; }
-        }
 
         public bool Pinned
         {
@@ -45,11 +38,10 @@ namespace FolderLounge
             get { return _folder; }
             set { _folder = value; }
         }
-        public FolderDisplayItem(string folder, bool pinned, string category)
+        public FolderDisplayItem(string folder, bool pinned)
         {
             _folder = folder;
             _pinned = pinned;
-            _category = category;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

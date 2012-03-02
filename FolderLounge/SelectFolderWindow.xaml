@@ -14,10 +14,10 @@
             <GradientStop Color="#868686" Offset="1"/>
         </LinearGradientBrush>
         <DataTemplate x:Key="SubjectHeader">
-            <TextBlock Text="Folder" TextAlignment="Left"  Width="680"/>
+            <TextBlock Text="Folder" TextAlignment="Left"  Width="670"/>
         </DataTemplate>
         <DataTemplate x:Key="PinnedHeader">
-            <TextBlock Text="Pinned" TextAlignment="Left" Width="50" />
+            <TextBlock Text="Bookmarked" TextAlignment="Left" Width="70" />
         </DataTemplate>
         <DataTemplate x:Key="SubjectCellTemplate">
             <TextBlock Foreground="#111111" 
