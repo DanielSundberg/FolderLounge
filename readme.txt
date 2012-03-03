@@ -4,17 +4,19 @@ Sort of like a bookmark system for folders, designed for seamless
 integration in your work flow.
 
 ToDO
--Scrolla listvy med piltangenter 
--Läs in directories från textfil i Documents and Settings
--Installationsprogram
--Göra det möjligt att pinna mappar
--Launch cmd, console2 och cygwin+config
--Flytta upp och ner pinnade mappar (drag'n'drop?)
--Se till så bara en instans kan köras 
+-Fix issue with unpinning first folder
+-Make list view scroll when using arrow keys to get to end of list 
+-Use Documents and settings for folders config file
+-Installer
+-Nice button for pinning folders
+-Animation when pinning folders
+-Launch cmd, console2 and cygwin with buttons/keyboard
+-Drag'n'drop to reorder folder list view
+-make sure only one instance of the program can be run
 -Config
-  -Vilka program kan köras igång
-  -Keyboard combos för program samt visa huvudfönster
-  -fontstorlek
+  -launch program selection
+  -Keyboard combos for programs and show main window
+  -font size
 
 Done: 
 -Read from recent folders
