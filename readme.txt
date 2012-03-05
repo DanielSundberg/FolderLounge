@@ -17,6 +17,9 @@ ToDO
   -launch program selection
   -Keyboard combos for programs and show main window
   -font size
+-Open folders directly from search/filter, including autocompletion
+-Mute folders (prevent them from showing up in list+reset in config)
+
 
 Done: 
 -Read from recent folders
