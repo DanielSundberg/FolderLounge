@@ -13,6 +13,8 @@ namespace FolderLounge
 {
     public class FolderViewModel
     {
+        public event Action PinnedFoldersChanged;
+
         private ObservableCollection<FolderDisplayItem> _folderDisplayItems = new ObservableCollection<FolderDisplayItem>();
         
         public FolderViewModel()
@@ -50,6 +52,10 @@ namespace FolderLounge
             // This will get called when the property of an object inside the collection changes
             // Persist items
             _folderReader.Save(_folderDisplayItems);
+            if (PinnedFoldersChanged != null)
+            {
+                PinnedFoldersChanged();
+            }
         }
 
         public ObservableCollection<FolderDisplayItem> FolderDisplayItems

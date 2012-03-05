@@ -52,10 +52,17 @@ namespace FolderLounge
                 // Setup grouping in list view
                 var dv = CollectionViewSource.GetDefaultView((DataContext as FolderViewModel).FolderDisplayItems);
                 dv.GroupDescriptions.Add(new PropertyGroupDescription("Pinned", new BooleanToPinnedTextConverter()));
+
+                folderViewModel.PinnedFoldersChanged += new Action(folderViewModel_PinnedFoldersChanged);
             };
         }
 
-
+        private void folderViewModel_PinnedFoldersChanged()
+        {
+            // Refresh view to update categories
+            var dv = CollectionViewSource.GetDefaultView((DataContext as FolderViewModel).FolderDisplayItems);
+            dv.Refresh();
+        }
 
         private void ShowThisWindow()
         {
@@ -71,9 +78,6 @@ namespace FolderLounge
         {
             var dv = CollectionViewSource.GetDefaultView((DataContext as FolderViewModel).FolderDisplayItems);
             dv.MoveCurrentTo((DataContext as FolderViewModel).FirstVisible());
-            
-            // Refresh view to update categories
-            dv.Refresh();
         }
 
         protected override void OnClosing(CancelEventArgs e)
