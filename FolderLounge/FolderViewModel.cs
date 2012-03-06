@@ -13,18 +13,21 @@ namespace FolderLounge
 {
     public class FolderViewModel
     {
-        public event Action PinnedFoldersChanged;
-
         private ObservableCollection<FolderDisplayItem> _folderDisplayItems = new ObservableCollection<FolderDisplayItem>();
         
         public FolderViewModel()
         {
             _folderDisplayItems.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(_folderDisplayItems_CollectionChanged);
 
-            _folderReader = new FolderReader();
-            var folders = _folderReader.GetFolders(); 
-            folders.ForEach(f => _folderDisplayItems.Add(f));
+            LoadFolders();
+        }
 
+        private void LoadFolders()
+        {
+            _folderDisplayItems.Clear();
+            _folderReader = new FolderReader();
+            var folders = _folderReader.GetFolders();
+            folders.ForEach(f => _folderDisplayItems.Add(f));
         }
 
         private void _folderDisplayItems_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -52,10 +55,7 @@ namespace FolderLounge
             // This will get called when the property of an object inside the collection changes
             // Persist items
             _folderReader.Save(_folderDisplayItems);
-            if (PinnedFoldersChanged != null)
-            {
-                PinnedFoldersChanged();
-            }
+            LoadFolders();
         }
 
         public ObservableCollection<FolderDisplayItem> FolderDisplayItems

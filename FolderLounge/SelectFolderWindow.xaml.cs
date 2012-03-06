@@ -52,8 +52,6 @@ namespace FolderLounge
                 // Setup grouping in list view
                 var dv = CollectionViewSource.GetDefaultView((DataContext as FolderViewModel).FolderDisplayItems);
                 dv.GroupDescriptions.Add(new PropertyGroupDescription("Pinned", new BooleanToPinnedTextConverter()));
-
-                folderViewModel.PinnedFoldersChanged += new Action(folderViewModel_PinnedFoldersChanged);
             };
         }
 
